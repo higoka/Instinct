@@ -1,9 +1,8 @@
 import {Link} from 'wouter';
 import {User} from '@instinct-prj/interface';
 import React, {useEffect, useState} from 'react';
-import {Avatar, userService} from '@instinct-prj/frontend';
-import {UserLeaderboardSkeleton} from '../UserLeaderboardSkeleton';
 import {GamesCardState, defaultGamesCardState} from '../Games.types';
+import {Avatar, Card, Icon, userService} from '@instinct-prj/frontend';
 
 export function TopPoints() {
   const [state, setState] = useState<GamesCardState>(defaultGamesCardState);
@@ -19,43 +18,38 @@ export function TopPoints() {
     fetchMostPoints();
   }, []);
 
+  function getHeader() {
+    return (
+      <div className="row">
+        <div className="col-6">
+          <Icon type="gamepad" />
+        </div>
+        <div className="col-6 text-right">Points</div>
+      </div>
+    );
+  }
+
   return (
-    <article className="default-section ranking-container">
-      <table className="default-table ranking-content">
-        <thead>
-          <tr>
-            <th colSpan={2}>Username</th>
-            <th>Most Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          {!state.showSpinner ? (
-            state.users.map(user => (
-              <tr key={user.id}>
-                <td>
-                  <div className="account-avatar">
-                    <Link to={`/profile/${user.username}`}>
-                      <Avatar look={user.figure} />
-                    </Link>
-                  </div>
-                </td>
-                <td>
-                  <Link to={`/profile/${user.username}`}>{user.username}</Link>
-                </td>
-                <td>
-                  <span>{user.points}</span>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <>
-              <UserLeaderboardSkeleton />
-              <UserLeaderboardSkeleton />
-              <UserLeaderboardSkeleton />
-            </>
-          )}
-        </tbody>
-      </table>
-    </article>
+    <Card header={getHeader()}>
+      {state.users.map(user => (
+        <Link
+          className="top-user-container"
+          key={user.id}
+          href={`/profile/${user.username}`}
+        >
+          <div className="row">
+            <div className="col-4">
+              <Avatar look={user.figure} headOnly />
+            </div>
+            <div className="col-8 text-right">
+              <h3>{user.username}</h3>
+              <h5 style={{marginTop: -10}}>
+                <b>{user.points}</b> Points
+              </h5>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </Card>
   );
 }

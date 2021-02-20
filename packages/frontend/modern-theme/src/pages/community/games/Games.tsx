@@ -4,7 +4,7 @@ import {TopPoints} from './top-points';
 import {TopCredits} from './top-credits';
 import {
   Container,
-  Jumbotron,
+  MiniJumbotron,
   Row,
   UserLayout,
   setURL,
@@ -15,8 +15,15 @@ setURL('community/games', <Games />);
 export function Games() {
   return (
     <UserLayout section="games_ranking">
-      <Jumbotron title="Leaderboard" />
       <Container>
+        <Row>
+          <div className="col-12">
+            <MiniJumbotron>
+              <h1>High Scores</h1>
+              <p>Can you make it to the top?</p>
+            </MiniJumbotron>
+          </div>
+        </Row>
         <Row>
           <div className="col-4">
             <TopCredits />
