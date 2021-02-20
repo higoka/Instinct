@@ -5,7 +5,7 @@ import {ArticleDTO} from '@instinct-prj/interface';
 import {NewsArticleEditor} from './editor/NewsArticleEditor';
 import {articleService, setURL} from '@instinct-prj/frontend';
 
-setURL('admin/list-articles/articles/create', <CreateNewsArticle />);
+setURL('admin/news/articles/create', <CreateNewsArticle />);
 
 export function CreateNewsArticle() {
   const [location, setLocation] = useLocation();

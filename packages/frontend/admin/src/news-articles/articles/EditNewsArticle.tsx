@@ -9,11 +9,11 @@ import {
   useFetchArticleByID,
 } from '@instinct-prj/frontend';
 
-setURL('admin/list-articles/articles/:articleID', <EditNewsArticle />);
+setURL('admin/news/articles/:articleID', <EditNewsArticle />);
 
 export function EditNewsArticle() {
   const [matched, params] = useRoute<{articleID: string}>(
-    '/admin/list-articles/articles/:articleID'
+    '/admin/news/articles/:articleID'
   );
   const article = useFetchArticleByID(params!.articleID);
 

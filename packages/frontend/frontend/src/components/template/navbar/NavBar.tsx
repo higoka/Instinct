@@ -17,7 +17,7 @@ export function NavBar() {
       >
         {!!user && (
           <>
-            <NavBarLink to="/home">Home</NavBarLink>
+            <NavBarLink to="/me">Home</NavBarLink>
             <NavBarLink to="/community/news">News</NavBarLink>
             <NavBarLink to="/community/staff">Staff Team</NavBarLink>
             <NavBarLink to="/community/games">High Scores</NavBarLink>

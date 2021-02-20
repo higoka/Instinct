@@ -8,7 +8,7 @@ import {
   MyProfile,
 } from '@instinct-prj/frontend';
 
-setURL('home', <Home />);
+setURL('me', <Home />);
 
 export function Home() {
   return (

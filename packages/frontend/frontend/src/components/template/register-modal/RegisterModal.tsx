@@ -52,7 +52,7 @@ export function RegisterModal() {
       );
       const user = await sessionService.attemptBearerToken(bearer);
       await setUser(user);
-      setLocation('/home');
+      setLocation('/me');
     } catch {
       toast.error('There was a problem creating your account.');
       setValue('showSpinner', false);

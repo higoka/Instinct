@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 import {NewsArticleLayout} from '../NewsArticlesLayout';
 import {APIWrapper, articleService, Icon, setURL} from '@instinct-prj/frontend';
 
-setURL('admin/list-articles/articles', <ListNewsArticles />);
+setURL('admin/news/articles', <ListNewsArticles />);
 
 export function ListNewsArticles() {
   const [refresh, setRefresh] = useState(0);

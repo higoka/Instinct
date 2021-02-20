@@ -13,7 +13,7 @@ export function ClientActions() {
 
   function toggleWebView(): void {
     setStore({showClient: !showClient});
-    setLocation('/home');
+    setLocation('/me');
   }
 
   async function toggleFullScreen(): Promise<void> {

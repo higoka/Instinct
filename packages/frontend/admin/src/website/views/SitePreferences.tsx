@@ -37,24 +37,6 @@ export function SitePreferences() {
           onChange={e => setConfig('siteBeta', e.target.checked)}
         />
       </FormGroup>
-      <FormGroup>
-        <h4>Badge Folder</h4>
-        <Input
-          type="text"
-          name="swfBadgeURL"
-          onChange={setConfig}
-          value={config.swfBadgeURL}
-        />
-      </FormGroup>
-      <FormGroup>
-        <h4>Group Badge Folder</h4>
-        <Input
-          type="text"
-          name="groupBadgeURL"
-          onChange={setConfig}
-          value={config.groupBadgeURL}
-        />
-      </FormGroup>
       <Row className="mt-3">
         <div className="col-6">&nbsp;</div>
         <div className="col-6 text-right">

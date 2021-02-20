@@ -14,7 +14,7 @@ export function PermissionGuard({
 
   if (!hasPermission) {
     if (redirect) {
-      setLocation(user ? '/home' : '/login');
+      setLocation(user ? '/me' : '/login');
     }
 
     return null;

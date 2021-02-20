@@ -34,57 +34,7 @@ export class UpdateConfigDTO implements ConfigDTO {
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  swfAdminHabbo!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfHabbo!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfExternalVariables!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfExternalTexts!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfProductData!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfFurniData!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfFigureData!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfBaseURL!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfBadgeURL!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfOverrideVariables!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  swfOverrideTexts!: string;
+  nitroURL!: string;
 
   @IsString()
   @IsNotEmpty()

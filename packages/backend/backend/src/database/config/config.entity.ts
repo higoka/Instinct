@@ -20,38 +20,8 @@ export class ConfigEntity {
   @Column({name: 'emulator_port'})
   emulatorPort!: string;
 
-  @Column({name: 'swf_admin_habbo'})
-  swfAdminHabbo!: string;
-
-  @Column({name: 'swf_habbo'})
-  swfHabbo!: string;
-
-  @Column({name: 'swf_external_variables'})
-  swfExternalVariables!: string;
-
-  @Column({name: 'swf_external_texts'})
-  swfExternalTexts!: string;
-
-  @Column({name: 'swf_productdata'})
-  swfProductData!: string;
-
-  @Column({name: 'swf_furnidata'})
-  swfFurniData!: string;
-
-  @Column({name: 'swf_figuredata'})
-  swfFigureData!: string;
-
-  @Column({name: 'swf_base_url'})
-  swfBaseURL!: string;
-
-  @Column({name: 'swf_badge_url'})
-  swfBadgeURL!: string;
-
-  @Column({name: 'swf_override_variables'})
-  swfOverrideVariables!: string;
-
-  @Column({name: 'swf_override_texts'})
-  swfOverrideTexts!: string;
+  @Column({name: 'nitro_url'})
+  nitroURL!: string;
 
   @Column({name: 'loading_message'})
   loadingMessage!: string;

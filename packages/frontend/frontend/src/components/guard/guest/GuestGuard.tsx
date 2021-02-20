@@ -8,7 +8,7 @@ export function GuestGuard({children}: GuestGuardProps) {
   const {user} = useContext(sessionContext);
 
   if (user) {
-    setLocation('/home');
+    setLocation('/me');
     return null;
   }
 

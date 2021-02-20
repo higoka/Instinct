@@ -34,7 +34,7 @@ export function LoginModal() {
       );
       const user = await sessionService.attemptBearerToken(bearer);
       setUser(user);
-      setLocation('/home');
+      setLocation('/me');
     } catch (e) {
       setValue('error', e.response.data.message[0]);
       setValue('showSpinner', false);

@@ -43,7 +43,7 @@ export function Login() {
       );
       const user = await sessionService.attemptBearerToken(bearer);
       setUser(user);
-      setLocation('/home');
+      setLocation('/me');
     } catch (e) {
       onChange('showError', true);
     } finally {
