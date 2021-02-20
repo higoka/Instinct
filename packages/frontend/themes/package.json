@@ -16,7 +16,6 @@
     "@instinct-prj/frontend": "^1.11.0",
     "@instinct-prj/interface": "^1.9.0",
     "@instinct-prj/interface-rp": "^1.11.0",
-    "@instinct-prj/client": "^1.11.0",
     "react-markdown": "5.0.3",
     "react-select": "^3.1.0",
     "react-toggle": "^4.1.1",
