@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@instinct-prj/admin": "^1.11.0",
-    "@instinct-prj/admin-rp": "^1.11.0",
     "@instinct-prj/frontend": "^1.11.0",
     "@instinct-prj/themes": "^1.15.0"
   },

@@ -4,7 +4,6 @@
     "baseUrl": ".",
     "paths": {
       "@instinct-prj/admin": ["packages/frontend/admin/src"],
-      "@instinct-prj/admin-rp": ["packages/frontend/admin-rp/src"],
       "@instinct-prj/themes": ["packages/frontend/themes/src"],
       "@instinct-prj/backend":  ["packages/backend/backend/src"],
       "@instinct-prj/interface": ["packages/shared/interface/src"],
