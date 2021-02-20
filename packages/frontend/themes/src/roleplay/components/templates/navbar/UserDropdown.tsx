@@ -31,7 +31,6 @@ export function UserDropdown() {
         {user.rank?.permissions.websiteShowAdminPanel && (
           <>
             <NavBarChildLink to="/admin">Admin Panel</NavBarChildLink>
-            <NavBarChildLink to="/admin/rp">Admin Panel RP</NavBarChildLink>
           </>
         )}
         <NavBarChildLink to="/preferences">Account Settings</NavBarChildLink>
