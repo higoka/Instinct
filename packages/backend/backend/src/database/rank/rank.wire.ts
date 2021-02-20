@@ -35,12 +35,6 @@ export function rankWire(rankEntity: RankEntity): Rank {
       websiteShowAdminPanel: permissionStatusToBoolean(
         rankEntity.websiteShowAdminPanel
       ),
-      websiteCreateBusiness: permissionStatusToBoolean(
-        rankEntity.websiteCreateBusiness
-      ),
-      websiteManageBusiness: permissionStatusToBoolean(
-        rankEntity.websiteManageBusiness
-      ),
       websiteAdminClient: permissionStatusToBoolean(
         rankEntity.websiteAdminClient
       ),
@@ -53,7 +47,6 @@ export function rankWire(rankEntity: RankEntity): Rank {
       websiteManageEmulator: permissionStatusToBoolean(
         rankEntity.websiteManageEmulator
       ),
-      accRoomCreator: permissionStatusToBoolean(rankEntity.accRoomCreator),
     },
   };
 }
@@ -72,12 +65,6 @@ export function rankDataTransferObjectToEntity(rankDTO: RankDTO): RankEntity {
     websiteShowAdminPanel: booleanToPermissionStatus(
       rankDTO.websiteShowAdminPanel
     ),
-    websiteManageBusiness: booleanToPermissionStatus(
-      rankDTO.websiteManageBusiness
-    ),
-    websiteCreateBusiness: booleanToPermissionStatus(
-      rankDTO.websiteCreateBusiness
-    ),
     websiteAdminClient: booleanToPermissionStatus(rankDTO.websiteAdminClient),
     websiteManageBetaCodes: booleanToPermissionStatus(
       rankDTO.websiteManageBetaCodes
@@ -88,6 +75,5 @@ export function rankDataTransferObjectToEntity(rankDTO: RankDTO): RankEntity {
     websiteManageEmulator: booleanToPermissionStatus(
       rankDTO.websiteManageEmulator
     ),
-    accRoomCreator: booleanToPermissionStatus(rankDTO.accRoomCreator),
   };
 }

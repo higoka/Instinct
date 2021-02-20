@@ -1,4 +1,4 @@
-import {RoomEntity} from './';
+import {RoomEntity} from './index';
 import {userWire} from '../user';
 import {Room} from '@instinct-prj/interface';
 

@@ -43,12 +43,6 @@ export class RankEntity {
   @Column({name: 'website_manage_config', type: 'enum', default: '0'})
   websiteManageConfig!: PermissionStatus;
 
-  @Column({name: 'website_create_business', type: 'enum', default: '0'})
-  websiteCreateBusiness!: PermissionStatus;
-
-  @Column({name: 'website_manage_business', type: 'enum', default: '0'})
-  websiteManageBusiness!: PermissionStatus;
-
   @Column({name: 'website_manage_beta_codes', type: 'enum', default: '0'})
   websiteManageBetaCodes!: PermissionStatus;
 
@@ -57,7 +51,4 @@ export class RankEntity {
 
   @Column({name: 'website_manage_emulator', type: 'enum', default: '0'})
   websiteManageEmulator!: PermissionStatus;
-
-  @Column({name: 'acc_room_creator', type: 'enum', default: '0'})
-  accRoomCreator!: PermissionStatus;
 }

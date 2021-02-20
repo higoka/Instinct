@@ -70,6 +70,7 @@ export class ConfigEntity {
 
   @Column({name: 'google_recaptcha_site_key'})
   googleRecaptchaClientKey!: string;
+
   @Column({name: 'google_recaptcha_secret_key'})
   googleRecaptchaSecretKey!: string;
 

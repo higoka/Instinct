@@ -1,12 +1,9 @@
 import React from 'react';
 import './GuestLayout.scss';
 import {GuestLayoutProps} from './';
+import {Card} from '../../generic/card';
 import {Footer} from '../../template/footer';
 import {GuestGuard} from '../../guard/guest';
-import {Header} from '../../template/header';
-import {NavBar} from '../../template/navbar';
-import {LoginModal} from '../../template/login-modal';
-import {RegisterModal} from '../../template/register-modal';
 
 export function GuestLayout({
   children,
@@ -16,14 +13,24 @@ export function GuestLayout({
   return (
     <GuestGuard>
       <span className="page-container">
-        <Header>
-          <RegisterModal />
-          <LoginModal />
-        </Header>
-        <NavBar />
         <main>
-          <section className="page-container" data-page={section} style={style}>
-            {children}
+          <section className="page-content" style={style}>
+            <div className="login-page">
+              <div className="row">
+                <div className="col-12">
+                  <img
+                    className="header-logo"
+                    src="/img/logo/regular.png"
+                    style={{width: '100%'}}
+                  />
+                  <Card>
+                    {children}
+                    <br />
+                    <br />
+                  </Card>
+                </div>
+              </div>
+            </div>
           </section>
         </main>
       </span>

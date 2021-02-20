@@ -2,7 +2,7 @@ import Moment from 'moment';
 import {getRepository} from 'typeorm';
 import {UserEntity} from '../user/user/user.entity';
 import {userFactory} from '../user/user/user.factory';
-import {PhotoEntity} from '../photo/photo.entity';
+import {PhotoEntity} from './photo.entity';
 
 export async function photoFactory(
   changes?: Partial<PhotoEntity>

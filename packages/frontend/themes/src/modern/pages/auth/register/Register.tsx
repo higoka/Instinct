@@ -1,32 +1,41 @@
-import './Login.scss';
 import {FormGroup} from 'reactstrap';
 import {Link, useLocation} from 'wouter';
 import React, {useContext, useState} from 'react';
-import {defaultLoginState, LoginState} from './Login.types';
+import {defaultRegisterState, RegisterState} from './Register.types';
 import {
   configContext,
   Form,
   Icon,
-  Input,
   GuestLayout,
+  Input,
   sessionContext,
   sessionService,
   setURL,
+  userService,
 } from '@instinct-prj/frontend';
+import ReCAPTCHA from 'react-google-recaptcha';
 
-setURL('login', <Login />);
+setURL('register', <Register />);
 
-export function Login() {
+export function Register() {
   const {config} = useContext(configContext);
   const {setUser} = useContext(sessionContext);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [location, setLocation] = useLocation();
-  const [state, setState] = useState<LoginState>(defaultLoginState);
+  const [state, setState] = useState<RegisterState>(defaultRegisterState);
 
   const disabled =
-    state.username === '' || state.password === '' || state.showSpinner;
+    state.username === '' ||
+    state.password === '' ||
+    state.password !== state.passwordAgain ||
+    state.captcha === '' ||
+    (config.siteBeta && state.betaCode === '') ||
+    state.showSpinner;
 
-  function onChange<K extends keyof LoginState>(key: K, value: LoginState[K]) {
+  function onChange<K extends keyof RegisterState>(
+    key: K,
+    value: RegisterState[K]
+  ) {
     setState(_ => ({
       ..._,
       [key]: value,
@@ -37,13 +46,20 @@ export function Login() {
     try {
       onChange('showSpinner', true);
       onChange('showError', false);
+      await userService.create(
+        state.username,
+        state.password,
+        state.email,
+        state.captcha!,
+        state.betaCode
+      );
       const bearer = await sessionService.attemptCredentials(
-        state.username!,
-        state.password!
+        state.username,
+        state.password
       );
       const user = await sessionService.attemptBearerToken(bearer);
-      setUser(user);
-      setLocation('/home');
+      await setUser(user);
+      setLocation('/welcome');
     } catch (e) {
       onChange('showError', true);
     } finally {
@@ -54,11 +70,6 @@ export function Login() {
   return (
     <GuestLayout>
       <Form className="" disabled={disabled} onSubmit={onSubmit}>
-        {state.showError && (
-          <div className="alert-danger p-2 mb-3">
-            <b>That is not the right username or password.</b>
-          </div>
-        )}
         <FormGroup>
           <h3>Username</h3>
           <Input
@@ -69,12 +80,16 @@ export function Login() {
           />
         </FormGroup>
         <FormGroup>
+          <h3>Email</h3>
+          <Input
+            type="email"
+            name="email"
+            value={state.email}
+            onChange={onChange}
+          />
+        </FormGroup>
+        <FormGroup>
           <h3>Password</h3>
-          <div style={{marginTop: -10}}>
-            <Link className="forgot-password" to="/forgot-password">
-              Forgot password?
-            </Link>
-          </div>
           <Input
             type="password"
             name="password"
@@ -83,20 +98,46 @@ export function Login() {
           />
         </FormGroup>
         <FormGroup>
+          <h3>Password Again</h3>
+          <Input
+            type="password"
+            name="passwordAgain"
+            value={state.passwordAgain}
+            onChange={onChange}
+          />
+        </FormGroup>
+        {config.siteBeta && (
+          <FormGroup>
+            <h3>Beta Code</h3>
+            <Input
+              type="text"
+              name="betaCode"
+              value={state.betaCode}
+              onChange={onChange}
+            />
+          </FormGroup>
+        )}
+        <FormGroup>
+          <ReCAPTCHA
+            sitekey={config.googleRecaptchaClientKey}
+            onChange={x => onChange('captcha', x as string)}
+          />
+        </FormGroup>
+        <FormGroup>
           <button
             className="btn btn-success btn-block"
             disabled={disabled}
             type="submit"
           >
-            Login
+            Register
           </button>
           <hr />
-          <Link to="/register">
+          <Link to="/login">
             <button className="btn btn-dark btn-block">
               {state.showSpinner ? (
                 <Icon className="fa-spin" type="spinner" />
               ) : (
-                <>Join {config.siteName} for Free!</>
+                <>Already Have an Account?</>
               )}
             </button>
           </Link>
