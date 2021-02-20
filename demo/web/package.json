@@ -1,15 +1,7 @@
 {
-  "name": "@instinct-prj/rp-web-demo",
-  "version": "1.15.0",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "start": "PORT=3001 react-app-rewired start",
-    "build": "rimraf ./dist && rimraf ./build && SKIP_PREFLIGHT_CHECK=true react-app-rewired build && mv build dist",
-    "update": "yarn update:frontend && yarn update:interface",
-    "update:frontend": "yarn add @instinct-prj/admin@latest && yarn add @instinct-prj/frontend@latest && yarn add @instinct-prj/themes@latest",
-    "update:interface": " yarn add @instinct-prj/interface@latest && yarn add @instinct-prj/interface-rp@latest"
+    "build": "rimraf ./dist && rimraf ./build && SKIP_PREFLIGHT_CHECK=true react-app-rewired build && mv build dist"
   },
   "dependencies": {
     "react": "^17.0.1",

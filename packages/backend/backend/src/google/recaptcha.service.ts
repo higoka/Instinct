@@ -11,10 +11,9 @@ export class GoogleRecaptchaService {
     const config = await this.configRepo.getConfig();
     const {
       data,
-    }: AxiosResponse<Record<
-      'success',
-      boolean
-    >> = await googleRecaptchaAPI.post(
+    }: AxiosResponse<
+      Record<'success', boolean>
+    > = await googleRecaptchaAPI.post(
       `siteverify?secret=${config.googleRecaptchaSecretKey}&response=${response}`
     );
     return data.success;

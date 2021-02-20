@@ -1,5 +1,5 @@
 {
-  "name": "@instinct-prj/themes",
+  "name": "@instinct-prj/modern-theme",
   "version": "1.15.0",
   "main": "dist/index.js",
   "types": "dist/types",

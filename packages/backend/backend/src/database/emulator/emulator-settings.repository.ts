@@ -5,9 +5,7 @@ import {BaseRepository} from '../base.repository';
 import {EmulatorSettingsEntity} from './emulator-settings.entity';
 
 @Injectable()
-export class EmulatorSettingsRepository extends BaseRepository<
-  EmulatorSettingsEntity
-> {
+export class EmulatorSettingsRepository extends BaseRepository<EmulatorSettingsEntity> {
   constructor(
     @InjectRepository(EmulatorSettingsEntity)
     emulatorSettingsRepo: Repository<EmulatorSettingsEntity>

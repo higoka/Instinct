@@ -5,9 +5,7 @@ import {BaseRepository} from '../base.repository';
 import {ArticleCategoryEntity} from './article-category.entity';
 
 @Injectable()
-export class ArticleCategoryRepository extends BaseRepository<
-  ArticleCategoryEntity
-> {
+export class ArticleCategoryRepository extends BaseRepository<ArticleCategoryEntity> {
   constructor(
     @InjectRepository(ArticleCategoryEntity)
     articleCategoryRepo: Repository<ArticleCategoryEntity>

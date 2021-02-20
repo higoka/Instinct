@@ -65,7 +65,6 @@ export function RankEditor({
 
   const permissionKeyToWord: Record<keyof Permissions, string> = {
     websiteAdminClient: 'Admin Client',
-    websiteCreateBusiness: 'Personal Business',
     websiteShowStaff: 'Show as Staff',
     websiteShowAdminPanel: 'Use Admin Panel',
     websiteManageEmulator: 'Manage Emulator',
@@ -74,10 +73,8 @@ export function RankEditor({
     websiteManageUsers: 'Manage Users',
     websiteManageBans: 'Manage Bans',
     websiteManageConfig: 'Manage Config',
-    websiteManageBusiness: 'Manage Businesses',
     websiteManageBetaCodes: 'Manage Beta Codes',
     websiteManageGuestbook: 'Manage Guestbook',
-    accRoomCreator: 'Create Rooms',
   };
 
   const permissionIndexes: Array<keyof Permissions> = Object.keys(

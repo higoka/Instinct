@@ -1,4 +1,5 @@
 {
+  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "rootDir": ".",
     "experimentalDecorators": true,
@@ -8,7 +9,7 @@
     "target": "es5",
     "baseUrl": "./",
     "sourceMap": false,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "removeComments": true,
     "skipLibCheck": true,
     "strict": true
