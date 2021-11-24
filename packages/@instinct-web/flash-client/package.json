@@ -1,6 +1,6 @@
 {
   "name": "@instinct-web/flash-client",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "main": "dist/index.js",
   "types": "dist/types",
   "files": [
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@instinct-prj/interface": "^3.0.1",
-    "@instinct-web/core": "^3.0.1",
+    "@instinct-web/core": "^3.0.2",
     "swfobject": "^2.2.1"
   },
   "devDependencies": {
