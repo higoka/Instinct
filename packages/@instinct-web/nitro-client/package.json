@@ -1,6 +1,6 @@
 {
   "name": "@instinct-web/nitro-client",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "main": "dist/index.js",
   "types": "dist/types",
   "files": [
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@instinct-prj/interface": "^3.0.1",
-    "@instinct-web/core": "^3.0.2"
+    "@instinct-web/core": "^3.0.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",
