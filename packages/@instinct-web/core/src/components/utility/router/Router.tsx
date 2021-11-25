@@ -1,11 +1,12 @@
 import React, {ReactNode} from 'react';
-import {Switch, Route, RouteProps} from 'wouter';
 import {RenderError} from '../../generic/error';
+import {Switch, Route, RouteProps, useLocation} from 'wouter';
 
 const routes: RouteProps[] = [];
 let notFound: ReactNode;
 
 export function Router() {
+  useLocation();
   try {
     return (
       <Switch>

@@ -7,7 +7,6 @@ import {Bootstrap, ContextProviders} from '@instinct-web/core';
 
 export function CosmicTheme() {
   const location = useLocation();
-  console.log(location);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
