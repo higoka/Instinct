@@ -168,7 +168,6 @@ export const instinctBaseSQL = `
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   
   ALTER TABLE \`users\` 
-  ADD COLUMN \`extra_rank\` tinyint(4) NULL,
   ADD COLUMN \`user_of_the_week\` tinyint(4) NULL DEFAULT 0 AFTER \`extra_rank\`,
   ADD COLUMN \`client_type\` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT 'nitro' AFTER \`user_of_the_week\`,
   ADD COLUMN \`stripe_customer_id\` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL AFTER \`client_type\`,
