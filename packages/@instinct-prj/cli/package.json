@@ -1,6 +1,6 @@
 {
   "name": "@instinct-prj/cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "types": "dist/index",
   "files": [
@@ -19,7 +19,7 @@
     "build:web": "cd web && rimraf dist && rimraf ./build && SKIP_PREFLIGHT_CHECK=true react-app-rewired build && mv build dist && cp dist/index.html dist/404.html && mv dist ../api/public"
   },
   "dependencies": {
-    "@instinct-api/database-migrations": "^4.0.1",
+    "@instinct-api/database-migrations": "^4.0.2",
     "bcryptjs": "^2.4.3",
     "download-git-repo": "^3.0.2",
     "prompts": "^2.4.1"
