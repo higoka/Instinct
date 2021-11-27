@@ -129,9 +129,9 @@ export class UserController {
 
     return {
       user: userWire(user),
-      rooms: user.rooms!.map(room => roomWire(room)),
-      badges: user.badges!.map(badge => badgeWire(badge)),
-      friends: user.friends!.map(user => userWire(user)),
+      rooms: user.rooms?.map(room => roomWire(room)) ?? [],
+      badges: user.badges?.map(badge => badgeWire(badge)) ?? [],
+      friends: user.friends?.map(user => userWire(user)) ?? [],
       groups: user.joinedGroups?.map(group => groupWire(group)) ?? [],
     };
   }
