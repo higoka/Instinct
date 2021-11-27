@@ -1,8 +1,8 @@
 import {EmulatorSettings} from '@instinct-prj/interface';
-import {EmulatorSettingsEntity} from './emulator-settings.entity';
+import {EmulatorSettingsStruct} from './emulator-settings.types';
 
 export function emulatorSettingsWire(
-  options: EmulatorSettingsEntity[]
+  options: EmulatorSettingsStruct[]
 ): EmulatorSettings {
   return options.map(_ => ({
     id: _.key,

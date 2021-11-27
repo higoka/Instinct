@@ -1,7 +1,7 @@
 import {Repository} from 'typeorm';
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {BaseRepository} from '../base.repository';
+import {BaseRepository} from '../../base.repository';
 import {EmulatorSettingsEntity} from './emulator-settings.entity';
 
 @Injectable()
