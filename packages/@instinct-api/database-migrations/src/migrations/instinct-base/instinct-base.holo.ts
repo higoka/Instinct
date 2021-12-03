@@ -314,84 +314,14 @@ export const instinctBaseSQL = `
     \`content\` text DEFAULT NULL,
     \`timestamp\` int(11) DEFAULT NULL,
     PRIMARY KEY (\`id\`) USING BTREE
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;ƒ
   
   
   ALTER TABLE \`rp_stats\` 
   ADD COLUMN \`political_party_id\` int(11) NULL DEFAULT NULL AFTER \`melee\`,
   DROP PRIMARY KEY,
   ADD PRIMARY KEY (\`id\`) USING BTREE;
-  
-  
-  DROP TABLE IF EXISTS \`website_rp_laws\`;
-  CREATE TABLE \`website_rp_laws\` (
-    \`id\` int(11) NOT NULL AUTO_INCREMENT,
-    \`title\` varchar(255) DEFAULT NULL,
-    \`user_id\` int(11) DEFAULT NULL,
-    \`description\` varchar(255) DEFAULT NULL,
-    \`content\` text DEFAULT NULL,
-    \`created_at\` int(255) DEFAULT NULL,
-    \`updated_at\` int(11) DEFAULT NULL,
-    \`status\` varchar(255) DEFAULT NULL,
-    \`enacted_at\` int(255) DEFAULT NULL,
-    PRIMARY KEY (\`id\`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
-
-  DROP TABLE IF EXISTS \`website_rp_laws_comments\`;
-  CREATE TABLE \`website_rp_laws_comments\` (
-    \`id\` int(11) NOT NULL AUTO_INCREMENT,
-    \`user_id\` int(11) DEFAULT NULL,
-    \`law_id\` int(11) DEFAULT NULL,
-    \`content\` text DEFAULT NULL,
-    \`created_at\` int(255) DEFAULT NULL,
-    \`updated_at\` int(11) DEFAULT NULL,
-    PRIMARY KEY (\`id\`) USING BTREE
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-  
-  DROP TABLE IF EXISTS \`website_rp_laws_events\`;
-  CREATE TABLE \`website_rp_laws_events\` (
-    \`id\` int(11) NOT NULL AUTO_INCREMENT,
-    \`law_id\` int(11) DEFAULT NULL,
-    \`event\` text DEFAULT NULL,
-    \`timestamp\` int(11) DEFAULT NULL,
-    PRIMARY KEY (\`id\`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
-  
-  
-  DROP TABLE IF EXISTS \`website_rp_laws_votes\`;
-  CREATE TABLE \`website_rp_laws_votes\` (
-    \`id\` int(11) NOT NULL AUTO_INCREMENT,
-    \`user_id\` int(11) DEFAULT NULL,
-    \`law_id\` int(11) DEFAULT NULL,
-    \`status\` enum('approved','rejected') DEFAULT NULL,
-    \`created_at\` int(255) DEFAULT NULL,
-    \`updated_at\` int(11) DEFAULT NULL,
-    PRIMARY KEY (\`id\`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
-  
-  DROP TABLE IF EXISTS \`website_rp_political_parties\`;
-  CREATE TABLE \`website_rp_political_parties\` (
-    \`id\` int(11) NOT NULL AUTO_INCREMENT,
-    \`name\` varchar(255) DEFAULT NULL,
-     \`badge\` varchar(255) DEFAULT NULL,
-    \`description\` varchar(255) DEFAULT NULL,
-    \`about\` text DEFAULT NULL,
-    \`user_id\` int(11) DEFAULT NULL,
-    \`ideology\` varchar(255) DEFAULT NULL,
-    \`created_at\` int(11) DEFAULT NULL,
-    \`updated_at\` int(11) DEFAULT NULL,
-    PRIMARY KEY (\`id\`)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-  
  
-  DROP TABLE IF EXISTS \`website_rp_political_parties_members\`;
-  CREATE TABLE \`website_rp_political_parties_members\` (
-    \`id\` int(11) NOT NULL AUTO_INCREMENT,
-    \`political_party_id\` int(11) NOT NULL,
-    \`is_admin\` tinyint(1) NOT NULL DEFAULT 0,
-    \`user_id\` int(11) DEFAULT NULL,
-    PRIMARY KEY (\`id\`,\`is_admin\`) USING BTREE
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   
   ALTER TABLE \`rp_jobs_ranks\` 
   ADD COLUMN \`id\` int(0) NOT NULL AUTO_INCREMENT AFTER \`limit\`,
@@ -412,6 +342,174 @@ export const instinctBaseSQL = `
   ADD COLUMN \`id\` int(0) NOT NULL AUTO_INCREMENT AFTER \`limit\`,
   DROP PRIMARY KEY,
   ADD PRIMARY KEY (\`id\`, \`gang\`, \`rank\`) USING BTREE;
+  
+  
+ 
+DROP TABLE IF EXISTS \`instinct_rp_guide_categories\`;
+CREATE TABLE \`instinct_rp_guide_categories\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`name\` varchar(255) DEFAULT NULL,
+  \`color\` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (\`id\`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS \`instinct_rp_guide_reactions\`;
+CREATE TABLE \`instinct_rp_guide_reactions\` (
+  \`id\` int(255) NOT NULL AUTO_INCREMENT,
+  \`guide_id\` int(11) DEFAULT NULL,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`reaction\` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_rp_guides_reactions_user\` (\`user_id\`),
+  KEY \`instinct_rp_guides_reaction_guide\` (\`guide_id\`),
+  CONSTRAINT \`instinct_rp_guides_reaction_guide\` FOREIGN KEY (\`guide_id\`) REFERENCES \`instinct_rp_guide_reactions\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT \`instinct_rp_guides_reactions_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS \`instinct_rp_guides\`;
+CREATE TABLE \`instinct_rp_guides\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`guide_categories_id\` int(11) DEFAULT NULL,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`name\` varchar(255) DEFAULT NULL,
+  \`content\` text DEFAULT NULL,
+  \`status\` varchar(255) DEFAULT NULL,
+  \`created_at\` int(255) DEFAULT NULL,
+  \`updated_at\` int(11) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_rp_guides_user\` (\`user_id\`),
+  CONSTRAINT \`instinct_rp_guides_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS \`instinct_rp_laws\`;
+CREATE TABLE \`instinct_rp_laws\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`title\` varchar(255) DEFAULT NULL,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`description\` varchar(255) DEFAULT NULL,
+  \`content\` text DEFAULT NULL,
+  \`created_at\` int(255) DEFAULT NULL,
+  \`updated_at\` int(11) DEFAULT NULL,
+  \`status\` varchar(255) DEFAULT NULL,
+  \`enacted_at\` int(255) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_rp_laws_user\` (\`user_id\`),
+  CONSTRAINT \`instinct_rp_laws_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS \`instinct_rp_laws_comments\`;
+CREATE TABLE \`instinct_rp_laws_comments\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`law_id\` int(11) DEFAULT NULL,
+  \`content\` text DEFAULT NULL,
+  \`created_at\` int(255) DEFAULT NULL,
+  \`updated_at\` int(11) DEFAULT NULL,
+  PRIMARY KEY (\`id\`) USING BTREE,
+  KEY \`instinct_rp_laws_comments_user\` (\`user_id\`),
+  KEY \`instinct_rp_laws_comments_law\` (\`law_id\`),
+  CONSTRAINT \`instinct_rp_laws_comments_law\` FOREIGN KEY (\`law_id\`) REFERENCES \`instinct_rp_laws\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT \`instinct_rp_laws_comments_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS \`instinct_rp_laws_events\`;
+CREATE TABLE \`instinct_rp_laws_events\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`law_id\` int(11) DEFAULT NULL,
+  \`event\` text DEFAULT NULL,
+  \`timestamp\` int(11) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_rp_laws_events_law\` (\`law_id\`),
+  CONSTRAINT \`instinct_rp_laws_events_law\` FOREIGN KEY (\`law_id\`) REFERENCES \`instinct_rp_laws\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS \`instinct_rp_laws_votes\`;
+CREATE TABLE \`instinct_rp_laws_votes\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`law_id\` int(11) DEFAULT NULL,
+  \`status\` enum('approved','rejected') DEFAULT NULL,
+  \`created_at\` int(255) DEFAULT NULL,
+  \`updated_at\` int(11) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_rp_laws_votes_law\` (\`law_id\`),
+  KEY \`instinct_rp_laws_votes_user\` (\`user_id\`),
+  CONSTRAINT \`instinct_rp_laws_votes_law\` FOREIGN KEY (\`law_id\`) REFERENCES \`instinct_rp_laws\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT \`instinct_rp_laws_votes_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS \`instinct_rp_political_parties\`;
+CREATE TABLE \`instinct_rp_political_parties\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`name\` varchar(255) DEFAULT NULL,
+  \`badge\` varchar(255) DEFAULT NULL,
+  \`description\` varchar(255) DEFAULT NULL,
+  \`about\` text DEFAULT NULL,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`ideology\` varchar(255) DEFAULT NULL,
+  \`created_at\` int(11) DEFAULT NULL,
+  \`updated_at\` int(11) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_rp_political_parties_user\` (\`user_id\`),
+  CONSTRAINT \`instinct_rp_political_parties_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS \`instinct_rp_political_parties_members\`;
+CREATE TABLE \`instinct_rp_political_parties_members\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`political_party_id\` int(11) NOT NULL,
+  \`is_admin\` tinyint(1) NOT NULL DEFAULT 0,
+  \`user_id\` int(11) DEFAULT NULL,
+  PRIMARY KEY (\`id\`,\`is_admin\`) USING BTREE,
+  KEY \`instinct_rp_political_parties_members_user\` (\`user_id\`),
+  KEY \`instinct_rp_political_parties_members_party\` (\`political_party_id\`),
+  CONSTRAINT \`instinct_rp_political_parties_members_party\` FOREIGN KEY (\`political_party_id\`) REFERENCES \`instinct_rp_political_parties\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT \`instinct_rp_political_parties_members_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS \`instinct_rp_properties\`;
+CREATE TABLE \`instinct_rp_properties\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`room_id\` int(11) DEFAULT NULL,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`listing_price\` decimal(10,2) DEFAULT NULL,
+  \`listed_at\` int(255) DEFAULT NULL,
+  \`sold_at\` varchar(255) DEFAULT NULL,
+  \`customer_id\` int(11) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_properties_user\` (\`user_id\`),
+  CONSTRAINT \`instinct_properties_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS \`instinct_rp_properties_bids\`;
+CREATE TABLE \`instinct_rp_properties_bids\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`user_id\` int(11) DEFAULT NULL,
+  \`property_id\` int(11) DEFAULT NULL,
+  \`offer\` int(255) DEFAULT NULL,
+  \`created_at\` varchar(255) DEFAULT NULL,
+  \`accepted\` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_properties_bids_property\` (\`property_id\`),
+  KEY \`instinct_properties_bids_user\` (\`user_id\`),
+  CONSTRAINT \`instinct_properties_bids_property\` FOREIGN KEY (\`property_id\`) REFERENCES \`instinct_rp_properties\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT \`instinct_properties_bids_user\` FOREIGN KEY (\`user_id\`) REFERENCES \`users\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS \`instinct_rp_properties_photos\`;
+CREATE TABLE \`instinct_rp_properties_photos\` (
+  \`id\` int(11) NOT NULL AUTO_INCREMENT,
+  \`property_id\` int(11) DEFAULT NULL,
+  \`photo_id\` int(11) DEFAULT NULL,
+  \`is_primary\` varchar(255) NOT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`instinct_properties_photo_property\` (\`property_id\`),
+  KEY \`instinct_properties_photo_photo\` (\`photo_id\`),
+  CONSTRAINT \`instinct_properties_photo_photo\` FOREIGN KEY (\`photo_id\`) REFERENCES \`instinct_rp_properties_photos\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT \`instinct_properties_photo_property\` FOREIGN KEY (\`property_id\`) REFERENCES \`instinct_rp_properties\` (\`id\`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+SET FOREIGN_KEY_CHECKS = 1;
   
   SET FOREIGN_KEY_CHECKS = 1;
 `;
