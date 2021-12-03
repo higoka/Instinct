@@ -1,6 +1,6 @@
 {
   "name": "@instinct-api/photos",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "main": "dist/index.js",
   "types": "dist/types",
   "files": [
@@ -12,7 +12,7 @@
     "compile": "tsc -p tsconfig.build.json"
   },
   "devDependencies": {
-    "@instinct-api/database": "^4.0.3",
+    "@instinct-api/database": "^4.0.4",
     "@instinct-api/session": "^2.4.7",
     "@instinct-prj/interface": "^3.0.1",
     "@nestjs/common": "^7.6.18",
